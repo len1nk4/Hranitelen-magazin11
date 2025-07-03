@@ -80,9 +80,26 @@ namespace Hranitelen_magazin11
         {
             Console.WriteLine("Checking product availability...");
         }
-       
+
+        private static void DisplayMenu()
+        {
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 
-        
+            Console.WriteLine("=========================");
+            Console.WriteLine("★       М Е Н Ю        ★");
+            Console.WriteLine("=========================");
+            Console.WriteLine();
+            Console.WriteLine("1. ▶ Добавяне на нов продукт ");
+            Console.WriteLine("2. ▶ Купуванe на продукт ");
+            Console.WriteLine("3. ▶ Проверка на наличните продукти");
+            Console.WriteLine("4. ▶ Справка за всички налични продукти");
+            Console.WriteLine();
+            Console.WriteLine("x. ❌ Изход");
+            Console.WriteLine("=========================");
+            Console.Write("Твоят избор: ");
+        }
+
+
     }
 }
