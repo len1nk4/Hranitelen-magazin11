@@ -15,7 +15,7 @@ namespace Hranitelen_magazin11
 
     internal class Data
     {
-        public const string FilePath = "product.txt";
+        public const string FilePath = "../../../product.txt";
         public List<Product> Products { get; private set; }
 
         private StreamReader reader;

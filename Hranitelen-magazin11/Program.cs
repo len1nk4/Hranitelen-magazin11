@@ -12,18 +12,18 @@ namespace Hranitelen_magazin11
             DisplayMenu();
 
             string choice;
-            while((choice = Console.ReadLine()) != "x")
+            while ((choice = Console.ReadLine()) != "x")
             {
                 switch (choice)
                 {
                     case "1": //add product
-                     AddProduct();
-                         
-              
-                    break;
+                        AddProduct();
+                        data.Save();
+
+                        break;
                     case "2": //sell a product
-                    SellProduct();
-                    break;
+                        SellProduct();
+                        break;
                     case "3": //check available products
                         CheckAvailability();
                         break;
