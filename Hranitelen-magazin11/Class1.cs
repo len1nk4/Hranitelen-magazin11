@@ -21,13 +21,13 @@ namespace Hranitelen_magazin11
         {
             Name = name;
             Category = category;
-            quantity = quantity;
+            Quantiy = quantity;
             ProductId = productid;
             Price = price;
         }
         public override string ToString()
         {
-            return $"{Name} - {Price}, {ProductId}";
+            return $"{Name} , {Price}, {ProductId},{Quantiy},{Category}";
         }
     }
 }
