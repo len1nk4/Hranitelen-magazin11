@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hranitelen_magazin11
 {
-    internal class Product
+    public class Product
     {
         public string Name { get; set; }
         public string Category { get; set; }
@@ -17,7 +17,7 @@ namespace Hranitelen_magazin11
             get { return Price; }
             set { Price = value; }
         }
-        public void Products(string name, string category, int quantity, int productid, decimal price)
+        public Product(string name, string category, int quantity, int productid, decimal price)
         {
             Name = name;
             Category = category;

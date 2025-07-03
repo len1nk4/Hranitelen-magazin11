@@ -17,55 +17,44 @@ namespace Hranitelen_magazin11
     {
         public const string FilePath = "product.txt";
         public List<Product> Product { get; private set; }
-        public List<Product> AllProducts { get; private set; }
+
+        private StreamReader reader;
+        private StreamWriter writer;
 
         public Data()
         {
-            Product = LoadProductsFromFile();
+            LoadProducts();
         }
 
-        private List<Product> LoadProductsFromFile()
+        public void Save()
         {
-            var products = new List<Product>();
-
-            if (File.Exists(FilePath))
+            writer = new StreamWriter(FilePath);
+            using (writer)
             {
-                var lines = File.ReadAllLines(FilePath);
-                foreach (var line in lines)
+                string jsonData = JsonSerializer.Serialize(Product);
+                writer.Write(jsonData);
+            }
+        }
+
+        public void LoadProducts()
+        {
+            Product = new List<Product>();
+            reader = new StreamReader(FilePath);
+            using (reader)
+            {
+                string jsonData = reader.ReadToEnd();
+                if (!string.IsNullOrEmpty(jsonData))
                 {
-                    if (!string.IsNullOrWhiteSpace(line))
-                    {
-                        products.Add(Product.FromString(line));
-                    }
+                    Product = JsonSerializer.Deserialize<List<Product>>(jsonData)!;
                 }
             }
-
-            return products;
         }
 
-        public static List<Product> LoadProducts()
+        public List<Product> GetAvailableProducts()
         {
-            var products = new List<Product>();
-
-            if (File.Exists(FilePath))
-            {
-                var lines = File.ReadAllLines(FilePath);
-                foreach (var line in lines)
-                {
-                    if (!string.IsNullOrWhiteSpace(line))
-                    {
-                        products.Add(Product.FromString(line));
-                    }
-                }
-            }
-
-            return products;
+            return Product.Where(p => p.Quantiy > 0).ToList();
         }
 
-        public static void SaveProducts(List<Product> products)
-        {
-            var lines = products.Select(p => p.ToString());
-            File.WriteAllLines(FilePath, lines);
-        }
+
     }
 }

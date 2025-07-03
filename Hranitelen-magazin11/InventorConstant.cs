@@ -8,6 +8,6 @@ namespace Hranitelen_magazin11
 {
     public static class InventorConstant
     {
-        public const string inventoryPath = "inventory.json";
+        public const string FilePath = "product.txt";
     }
 }
