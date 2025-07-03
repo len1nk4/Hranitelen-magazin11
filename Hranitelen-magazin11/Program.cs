@@ -49,7 +49,7 @@ namespace Hranitelen_magazin11
             int productId = int.Parse(Console.ReadLine() ?? "0");
             Console.Write("Enter product price: ");
             decimal price = decimal.Parse(Console.ReadLine() ?? "0.0");
-            Product newProduct = new Product
+            Product newProduct = new Product(name, category, quantity, productId, price)
             {
                 Name = name,
                 Category = category,
