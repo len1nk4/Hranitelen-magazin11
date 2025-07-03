@@ -10,7 +10,7 @@ namespace Hranitelen_magazin11
     {
         public string Name { get; set; }
         public string Category { get; set; }
-        public int Quantiy { get; set; }
+        public int Quantity { get; set; }
         public int ProductId { get; set; }
         public decimal Price
         {
@@ -21,14 +21,18 @@ namespace Hranitelen_magazin11
         {
             Name = name;
             Category = category;
-            Quantiy = quantity;
+            Quantity = quantity;
             ProductId = productid;
             Price = price;
         }
         public override string ToString()
         {
-            return $"{Name} , {Price}, {ProductId},{Quantiy},{Category}";
+            return $"{Name} , {Price}, {ProductId},{Quantity},{Category}";
         }
-        
+
+        public void DisplayMenu()
+        {
+            Console.WriteLine($"ID: {ProductId} | Име: {Name} | Категория: {Category} | Цена: {Price:F2} лв | Количество: {Quantity}");
+        }
     }
 }

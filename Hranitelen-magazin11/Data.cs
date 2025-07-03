@@ -52,7 +52,7 @@ namespace Hranitelen_magazin11
 
         public List<Product> GetAvailableProducts()
         {
-            return Products.Where(p => p.Quantiy > 0).ToList();
+            return Products.Where(p => p.Quantity > 0).ToList();
         }
 
 
