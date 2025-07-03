@@ -57,7 +57,7 @@ namespace Hranitelen_magazin11
                 ProductId = productId,
                 Price = price
             };
-            data.Product.Add(newProduct);
+            data.Products.Add(newProduct);
             Console.WriteLine($"Product {name} added successfully.");
         }
 
@@ -69,7 +69,7 @@ namespace Hranitelen_magazin11
         private static void ListAllProducts()
         {
             Console.WriteLine("Listing all products...");
-            foreach (var product in data.Product)
+            foreach (var product in data.Products)
             {
                 Console.WriteLine(product.ToString());
             }

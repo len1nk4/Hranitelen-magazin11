@@ -16,7 +16,7 @@ namespace Hranitelen_magazin11
     internal class Data
     {
         public const string FilePath = "product.txt";
-        public List<Product> Product { get; private set; }
+        public List<Product> Products { get; private set; }
 
         private StreamReader reader;
         private StreamWriter writer;
@@ -31,28 +31,28 @@ namespace Hranitelen_magazin11
             writer = new StreamWriter(FilePath);
             using (writer)
             {
-                string jsonData = JsonSerializer.Serialize(Product);
+                string jsonData = JsonSerializer.Serialize(Products);
                 writer.Write(jsonData);
             }
         }
 
         public void LoadProducts()
         {
-            Product = new List<Product>();
+            Products = new List<Product>();
             reader = new StreamReader(FilePath);
             using (reader)
             {
                 string jsonData = reader.ReadToEnd();
                 if (!string.IsNullOrEmpty(jsonData))
                 {
-                    Product = JsonSerializer.Deserialize<List<Product>>(jsonData)!;
+                    Products = JsonSerializer.Deserialize<List<Product>>(jsonData)!;
                 }
             }
         }
 
         public List<Product> GetAvailableProducts()
         {
-            return Product.Where(p => p.Quantiy > 0).ToList();
+            return Products.Where(p => p.Quantiy > 0).ToList();
         }
 
 
