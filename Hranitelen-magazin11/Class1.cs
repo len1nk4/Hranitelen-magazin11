@@ -9,6 +9,9 @@ namespace Hranitelen_magazin11
 {
     public class Product
     {
+        private decimal price;
+
+
         public string Name { get; set; }
         public string Category { get; set; }
         public int Quantity { get; set; }
@@ -26,7 +29,7 @@ namespace Hranitelen_magazin11
         {
             get
             {
-                return Price;
+                return price;
             }
             set
             {
@@ -34,7 +37,7 @@ namespace Hranitelen_magazin11
                 {
                     throw new ArgumentException("Price must be a positive number.");
                 }
-                Price = value;
+                price = value;
             }
         }
         public override string ToString()
