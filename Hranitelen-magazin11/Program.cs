@@ -17,11 +17,11 @@ namespace Hranitelen_magazin11
                     case "1": //add product
                      AddProduct();
                          
-                       
-                        break;
+              
+                    break;
                     case "2": //sell a product
-                        SellProduct();
-                        break;
+                    SellProduct();
+                    break;
                     case "3": //check available products
                         CheckAvailability();
                         break;
