@@ -15,31 +15,57 @@ namespace Hranitelen_magazin11
 
     internal class Data
     {
-
+        public const string FilePath = "product.txt";
         public List<Product> Product { get; private set; }
         public List<Product> AllProducts { get; private set; }
 
-        private Customers customers;
-        private Seller seller;
         public Data()
         {
-            LoadProducts();
-            
+            Product = LoadProductsFromFile();
         }
-        private void LoadProducts()
+
+        private List<Product> LoadProductsFromFile()
         {
-          Product = new List<Product>();
-            Customers customers = new Customers (inventoryPath);
-            using (customers)
+            var products = new List<Product>();
+
+            if (File.Exists(FilePath))
             {
-                string jsonData = customers.Shop();
-                if (!string.IsNullOrEmpty(jsonData))
+                var lines = File.ReadAllLines(FilePath);
+                foreach (var line in lines)
                 {
-                   Product = JsonSerializer.Deserialize<List<Product>>(jsonData)!;
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        products.Add(Product.FromString(line));
+                    }
                 }
             }
 
+            return products;
         }
 
+        public static List<Product> LoadProducts()
+        {
+            var products = new List<Product>();
+
+            if (File.Exists(FilePath))
+            {
+                var lines = File.ReadAllLines(FilePath);
+                foreach (var line in lines)
+                {
+                    if (!string.IsNullOrWhiteSpace(line))
+                    {
+                        products.Add(Product.FromString(line));
+                    }
+                }
+            }
+
+            return products;
+        }
+
+        public static void SaveProducts(List<Product> products)
+        {
+            var lines = products.Select(p => p.ToString());
+            File.WriteAllLines(FilePath, lines);
+        }
     }
 }
