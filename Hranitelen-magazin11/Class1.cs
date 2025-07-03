@@ -25,5 +25,9 @@ namespace Hranitelen_magazin11
             ProductId = productid;
             Price = price;
         }
+        public override string ToString()
+        {
+            return $"{Name} - {Price}, {ProductId}";
+        }
     }
 }
