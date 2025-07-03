@@ -55,7 +55,7 @@ namespace Hranitelen_magazin11
             {
                 Name = name,
                 Category = category,
-                Quantiy = quantity,
+                Quantity = quantity,
                 ProductId = productId,
                 Price = price
             };
@@ -80,10 +80,7 @@ namespace Hranitelen_magazin11
         {
             Console.WriteLine("Checking product availability...");
         }
-        public void DisplayMenu()
-        {
-            
-        }
+       
 
 
         
