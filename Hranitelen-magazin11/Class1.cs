@@ -29,5 +29,6 @@ namespace Hranitelen_magazin11
         {
             return $"{Name} - {Price}, {ProductId}";
         }
+        
     }
 }

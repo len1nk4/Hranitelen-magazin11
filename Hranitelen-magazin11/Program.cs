@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace Hranitelen_magazin11
 {
@@ -78,9 +80,9 @@ namespace Hranitelen_magazin11
         {
             Console.WriteLine("Checking product availability...");
         }
-        private static void DisplayMenu()
+        public void DisplayMenu()
         {
-
+            
         }
 
 
