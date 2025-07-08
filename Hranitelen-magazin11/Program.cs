@@ -64,14 +64,14 @@ namespace Hranitelen_magazin11
             Console.WriteLine("Adding a new product...");
 
             string name = "";
-            while (string.IsNullOrWhiteSpace(name) || !IsString(name))
+            while (string.IsNullOrWhiteSpace(name) || !IsString(name))//Ime na produkta
             {
                 Console.Write("Enter product name (letters only): ");
                 name = Console.ReadLine();
             }
 
             string category = "";
-            while (string.IsNullOrWhiteSpace(category) || !IsString(category))
+            while (string.IsNullOrWhiteSpace(category) || !IsString(category))//Kategoriq
             {
                 Console.Write("Enter product category (letters only): ");
                 category = Console.ReadLine();
@@ -80,7 +80,7 @@ namespace Hranitelen_magazin11
             int quantity;
             while (true)
             {
-                Console.Write("Enter product quantity (whole number): ");
+                Console.Write("Enter product quantity (whole number): ");//Kolichestvo
                 string input = Console.ReadLine();
                 if (int.TryParse(input, out quantity) && quantity >= 0)
                     break;
@@ -92,7 +92,7 @@ namespace Hranitelen_magazin11
             decimal price;
             while (true)
             {
-                Console.Write("Enter product price (decimal): ");
+                Console.Write("Enter product price (decimal): ");//Cena
                 string input = Console.ReadLine();
                 if (decimal.TryParse(input, out price) && price >= 0)
                     break;
@@ -154,13 +154,13 @@ namespace Hranitelen_magazin11
             }
             int sellQuantity = int.Parse(quantityInput);
 
-            if (sellQuantity <= 0)
+            if (sellQuantity <= 0)//Ako nqma dostatachno kolichestvo
             {
                 Console.WriteLine("Quantity must be greater than 0.");
                 return;
             }
 
-            if (sellQuantity > productToSell.Quantity)
+            if (sellQuantity > productToSell.Quantity)//Ako nqma dostatachno kolichestvo
             {
                 Console.WriteLine("Not enough stock to sell that quantity.");
                 return;
@@ -173,14 +173,7 @@ namespace Hranitelen_magazin11
 
         }
 
-        private static void ListAllProducts()//4 Spravka za vsichki produkti
-        {
-            Console.WriteLine("Listing all products...");
-            foreach (var product in data.Products)
-            {
-                Console.WriteLine(product.ToString());
-            }
-        }
+        
         private static void CheckAvailability()//3 Proverka na nalichnost na daden produkt
         {
             Console.WriteLine("Checking available products...");
@@ -203,8 +196,15 @@ namespace Hranitelen_magazin11
 
         }
 
-
-        private static void DisplayMenu()
+           private static void ListAllProducts()//4 Spravka za vsichki produkti
+           {
+            Console.WriteLine("Listing all products...");
+            foreach (var product in data.Products)
+            {
+                Console.WriteLine(product.ToString());
+            }
+           }
+        private static void DisplayMenu()//
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -223,17 +223,17 @@ namespace Hranitelen_magazin11
             Console.Write("Твоят избор: ");
         }
 
-        static bool IsString(string input)
+        static bool IsString(string input)//Proverqva dali e duma
         {
             return !string.IsNullOrEmpty(input) && input.All(char.IsLetter);
         }
 
-        static bool IsNumber(string input)
+        static bool IsNumber(string input)//Proverqva dali e chislo
         {
             return !string.IsNullOrEmpty(input) && input.All(char.IsDigit);
         }
 
-        static bool IsValidNumber(string input)
+        static bool IsValidNumber(string input)//Proverqva dali e validno chislo (cqlo)
         {
             return !string.IsNullOrWhiteSpace(input) && input.All(char.IsDigit);
         }
