@@ -87,15 +87,7 @@ namespace Hranitelen_magazin11
                 Console.WriteLine("Invalid quantity. Please enter a valid whole number.");
             }
 
-            int productId;
-            while (true)
-            {
-                Console.Write("Enter product ID (whole number): ");
-                string input = Console.ReadLine();
-                if (int.TryParse(input, out productId) && productId > 0)
-                    break;
-                Console.WriteLine("Invalid ID. Please enter a valid positive number.");
-            }
+            
 
             decimal price;
             while (true)
@@ -106,12 +98,34 @@ namespace Hranitelen_magazin11
                     break;
                 Console.WriteLine("Invalid price. Please enter a valid decimal number.");
             }
+            
+            int productId;
+            while (true)
+            {
+                
+                Random random = new Random();
+                int newId;
+
+                do
+                {
+                    newId = random.Next(1000, 9999); // Генерира ID между 1000 и 9999
+                }
+                while (data.Products.Any(p => p.ProductId == newId)); // Проверява дали вече съществува
+                
+                Console.Write($"Product ID: {newId} ");
+                productId = newId;
+                productId = Console.ReadLine() == "" ? productId : int.Parse(Console.ReadLine());
+                break;
+                // Излизаме от цикъла, ако ID-то е уникално
+            }
+
+            
 
             Product newProduct = new Product(name, category, quantity, productId, price);
             data.Products.Add(newProduct);
 
             Console.WriteLine($"Product '{name}' added successfully.");
-
+            
         }
 
         private static void SellProduct()//2 Kupuvane na produkt
@@ -187,32 +201,6 @@ namespace Hranitelen_magazin11
                 Console.WriteLine($"❌ Product with name '{inputProductName}' is NOT available.");
             }
 
-            //foreach (var product in data.Products)
-            //{
-            //    if (product.Name == inputProductName)
-            //    {
-            //        Console.WriteLine($"✅ Product '{product.Name}' is available with quantity: {product.Quantity}.");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"❌ Product '{product.Name}' is NOT available.");
-            //    }
-            //}
-
-
-            //    var availableProducts = new List<string> { inputProduct };
-            //foreach (var product in data.Products)
-            //{
-            //    if (availableProducts.Contains(product.Name))
-            //    {
-            //        Console.WriteLine($"✅ Product '{product.Name}' is available.");
-            //    }
-            //    else
-            //    {
-            //        Console.WriteLine($"❌ Product '{product.Name}' is NOT available.");
-            //    }
-
-            //}
         }
 
 
