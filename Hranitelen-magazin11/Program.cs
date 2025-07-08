@@ -95,7 +95,10 @@ namespace Hranitelen_magazin11
 
         private static void SellProduct()
         {
-            Console.WriteLine("Product sold successfully.");
+           
+            Console.WriteLine("Plese enter the name to sell:");
+            string productName = Console.ReadLine();
+          Console.WriteLine($"Product{productName} sold successfully.");
         }
 
         private static void ListAllProducts()

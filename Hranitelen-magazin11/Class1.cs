@@ -38,7 +38,7 @@ namespace Hranitelen_magazin11
             get { return category; }
             set
             { 
-                name = value;
+               category = value;
             }
         }
         public decimal Price
@@ -62,7 +62,7 @@ namespace Hranitelen_magazin11
         }
         public override string ToString()
         {
-            return $"{Name} , {Price}, {ProductId},{Quantity},{Category}";
+            return $" {Name} , {Price}, {ProductId},{Quantity},{Category}";
         }
 
        
