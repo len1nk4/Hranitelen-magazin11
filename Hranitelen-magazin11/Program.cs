@@ -38,7 +38,7 @@ namespace Hranitelen_magazin11
             }
         }
 
-        private static void AddProduct()
+        private static void AddProduct()//1 Dobavqne na produkt
         {
             Console.WriteLine("Adding a new product...");
 
@@ -93,7 +93,7 @@ namespace Hranitelen_magazin11
 
         }
 
-        private static void SellProduct()
+        private static void SellProduct()//2 Kupuvane na produkt
         {
             Console.WriteLine("Please enter the product name to sell:");
             string productName = Console.ReadLine();
@@ -138,7 +138,7 @@ namespace Hranitelen_magazin11
 
         }
 
-        private static void ListAllProducts()
+        private static void ListAllProducts()//4 Spravka za vsichki produkti
         {
             Console.WriteLine("Listing all products...");
             foreach (var product in data.Products)
@@ -146,10 +146,33 @@ namespace Hranitelen_magazin11
                 Console.WriteLine(product.ToString());
             }
         }
-        private static void CheckAvailability()
+        private static void CheckAvailability()//3 Proverka na nalichnost na daden produkt
         {
-            Console.WriteLine("Checking product availability...");
+            Console.WriteLine("Checking available products...");
+            string inputProduct = Console.ReadLine();
+
+            if (string.IsNullOrWhiteSpace(inputProduct))
+            {
+                Console.WriteLine("Invalid product name.");
+                return;
+            }
+
+
+            var availableProducts = new List<string> { inputProduct };
+            foreach (var product in data.Products)
+            {
+                if (availableProducts.Contains(product.Name))
+                {
+                    Console.WriteLine($"✅ Product '{product.Name}' is available.");
+                }
+                else
+                {
+                    Console.WriteLine($"❌ Product '{product.Name}' is NOT available.");
+                }
+
+            }
         }
+       
 
         private static void DisplayMenu()
         {
