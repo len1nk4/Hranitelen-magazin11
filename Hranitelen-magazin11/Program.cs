@@ -95,10 +95,47 @@ namespace Hranitelen_magazin11
 
         private static void SellProduct()
         {
-           
-            Console.WriteLine("Plese enter the name to sell:");
+            Console.WriteLine("Please enter the product name to sell:");
             string productName = Console.ReadLine();
-          Console.WriteLine($"Product{productName} sold successfully.");
+
+            // Търсим продукта по име (case-insensitive)
+            Product productToSell = data.Products
+                .FirstOrDefault(p => p.Name.Equals(productName, StringComparison.OrdinalIgnoreCase));
+
+            if (productToSell == null)
+            {
+                Console.WriteLine($"Product '{productName}' not found.");
+                return;
+            }
+
+            Console.WriteLine($"Current stock of '{productToSell.Name}': {productToSell.Quantity}");
+
+            // Искане на количество за продажба
+            string quantityInput = "";
+            while (!IsValidNumber(quantityInput))
+            {
+                Console.Write("Enter quantity to sell: ");
+                quantityInput = Console.ReadLine();
+            }
+            int sellQuantity = int.Parse(quantityInput);
+
+            if (sellQuantity <= 0)
+            {
+                Console.WriteLine("Quantity must be greater than 0.");
+                return;
+            }
+
+            if (sellQuantity > productToSell.Quantity)
+            {
+                Console.WriteLine("Not enough stock to sell that quantity.");
+                return;
+            }
+
+            // Изваждане на продаденото количество
+            productToSell.Quantity -= sellQuantity;
+            Console.WriteLine($"Sold {sellQuantity} of '{productToSell.Name}'. Remaining stock: {productToSell.Quantity}");
+        
+
         }
 
         private static void ListAllProducts()
@@ -142,5 +179,11 @@ namespace Hranitelen_magazin11
         {
             return !string.IsNullOrEmpty(input) && input.All(char.IsDigit);
         }
+
+        static bool IsValidNumber(string input)
+        {
+            return !string.IsNullOrWhiteSpace(input) && input.All(char.IsDigit);
+        }
+
     }
 }
