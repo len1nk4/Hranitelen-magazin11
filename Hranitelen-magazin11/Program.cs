@@ -19,17 +19,38 @@ namespace Hranitelen_magazin11
                     case "1": //add product
                         AddProduct();
                         data.Save();
-
+                        Console.WriteLine(" Към меню натисни ENTER.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        DisplayMenu();
                         break;
+
                     case "2": //sell a product
                         SellProduct();
+                        Console.WriteLine(" Към меню натисни ENTER.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        DisplayMenu();
                         break;
+
+
                     case "3": //check available products
                         CheckAvailability();
+                        Console.WriteLine(" Към меню натисни ENTER.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        DisplayMenu();
                         break;
+
                     case "4": //list all products
                         ListAllProducts();
+                        Console.WriteLine(" Към меню натисни ENTER.");
+                        Console.ReadLine();
+                        Console.Clear();
+                        DisplayMenu();
                         break;
+
+
                     case "5":
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");
@@ -134,7 +155,7 @@ namespace Hranitelen_magazin11
             // Изваждане на продаденото количество
             productToSell.Quantity -= sellQuantity;
             Console.WriteLine($"Sold {sellQuantity} of '{productToSell.Name}'. Remaining stock: {productToSell.Quantity}");
-        
+
 
         }
 
@@ -149,30 +170,51 @@ namespace Hranitelen_magazin11
         private static void CheckAvailability()//3 Proverka na nalichnost na daden produkt
         {
             Console.WriteLine("Checking available products...");
-            string inputProduct = Console.ReadLine();
+            string inputProductName = Console.ReadLine();
 
-            if (string.IsNullOrWhiteSpace(inputProduct))
+            if (string.IsNullOrWhiteSpace(inputProductName))
             {
                 Console.WriteLine("Invalid product name.");
                 return;
             }
-
-
-            var availableProducts = new List<string> { inputProduct };
-            foreach (var product in data.Products)
+            Product availableProduct = data.Products.Find(p => p.Name == inputProductName);
+            if ( availableProduct != null)
             {
-                if (availableProducts.Contains(product.Name))
-                {
-                    Console.WriteLine($"✅ Product '{product.Name}' is available.");
-                }
-                else
-                {
-                    Console.WriteLine($"❌ Product '{product.Name}' is NOT available.");
-                }
-
+                Console.WriteLine($"✅ Product '{availableProduct.Name}' is available with quantity: {availableProduct.Quantity}.");
             }
+            else
+            {
+                Console.WriteLine($"❌ Product with name '{inputProductName}' is NOT available.");
+            }
+
+            //foreach (var product in data.Products)
+            //{
+            //    if (product.Name == inputProductName)
+            //    {
+            //        Console.WriteLine($"✅ Product '{product.Name}' is available with quantity: {product.Quantity}.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"❌ Product '{product.Name}' is NOT available.");
+            //    }
+            //}
+
+
+            //    var availableProducts = new List<string> { inputProduct };
+            //foreach (var product in data.Products)
+            //{
+            //    if (availableProducts.Contains(product.Name))
+            //    {
+            //        Console.WriteLine($"✅ Product '{product.Name}' is available.");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"❌ Product '{product.Name}' is NOT available.");
+            //    }
+
+            //}
         }
-       
+
 
         private static void DisplayMenu()
         {
