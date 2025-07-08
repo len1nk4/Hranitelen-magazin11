@@ -41,26 +41,56 @@ namespace Hranitelen_magazin11
         private static void AddProduct()
         {
             Console.WriteLine("Adding a new product...");
-            Console.Write("Enter product name: ");
-            string name = Console.ReadLine();
-            Console.Write("Enter product category: ");
-            string category = Console.ReadLine();
-            Console.Write("Enter product quantity: ");
-            int quantity = int.Parse(Console.ReadLine() ?? "0");
-            Console.Write("Enter product ID: ");
-            int productId = int.Parse(Console.ReadLine() ?? "0");
-            Console.Write("Enter product price: ");
-            decimal price = decimal.Parse(Console.ReadLine() ?? "0.0");
-            Product newProduct = new Product(name, category, quantity, productId, price)
+
+            string name = "";
+            while (string.IsNullOrWhiteSpace(name) || !IsString(name))
             {
-                Name = name,
-                Category = category,
-                Quantity = quantity,
-                ProductId = productId,
-                Price = price
-            };
+                Console.Write("Enter product name (letters only): ");
+                name = Console.ReadLine();
+            }
+
+            string category = "";
+            while (string.IsNullOrWhiteSpace(category) || !IsString(category))
+            {
+                Console.Write("Enter product category (letters only): ");
+                category = Console.ReadLine();
+            }
+
+            int quantity;
+            while (true)
+            {
+                Console.Write("Enter product quantity (whole number): ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out quantity) && quantity >= 0)
+                    break;
+                Console.WriteLine("Invalid quantity. Please enter a valid whole number.");
+            }
+
+            int productId;
+            while (true)
+            {
+                Console.Write("Enter product ID (whole number): ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out productId) && productId > 0)
+                    break;
+                Console.WriteLine("Invalid ID. Please enter a valid positive number.");
+            }
+
+            decimal price;
+            while (true)
+            {
+                Console.Write("Enter product price (decimal): ");
+                string input = Console.ReadLine();
+                if (decimal.TryParse(input, out price) && price >= 0)
+                    break;
+                Console.WriteLine("Invalid price. Please enter a valid decimal number.");
+            }
+
+            Product newProduct = new Product(name, category, quantity, productId, price);
             data.Products.Add(newProduct);
-            Console.WriteLine($"Product {name} added successfully.");
+
+            Console.WriteLine($"Product '{name}' added successfully.");
+
         }
 
         private static void SellProduct()
@@ -100,6 +130,14 @@ namespace Hranitelen_magazin11
             Console.Write("Твоят избор: ");
         }
 
+        static bool IsString(string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.All(char.IsLetter);
+        }
 
+        static bool IsNumber(string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.All(char.IsDigit);
+        }
     }
 }

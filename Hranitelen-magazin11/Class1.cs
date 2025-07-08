@@ -10,20 +10,36 @@ namespace Hranitelen_magazin11
     public class Product
     {
         private decimal price;
-
-
-        public string Name { get; set; }
-        public string Category { get; set; }
-        public int Quantity { get; set; }
+        private int quantity;
+        private string name;
+        private string category;
         public int ProductId { get; set; }
-        
-        public Product(string name, string category, int quantity, int productid, decimal price)
+
+        public string Name 
         {
-            Name = name;
-            Category = category;
-            Quantity = quantity;
-            ProductId = productid;
-            Price = price;
+            get { return name; }
+            set
+            {
+               name = value;
+            }
+        }
+
+        public int Quantity
+        {
+            get { return quantity; }
+            set
+            {
+                quantity = value;
+            }
+        }
+
+        public string Category
+        {
+            get { return category; }
+            set
+            { 
+                name = value;
+            }
         }
         public decimal Price
         {
@@ -33,12 +49,16 @@ namespace Hranitelen_magazin11
             }
             set
             {
-                if (value <= 0)
-                {
-                    throw new ArgumentException("Price must be a positive number.");
-                }
-                price = value;
+               price = value;
             }
+        }
+        public Product(string name, string category, int quantity, int productid, decimal price)
+        {
+            Name = name;
+            Category = category;
+            Quantity = quantity;
+            ProductId = productid;
+            Price = price;
         }
         public override string ToString()
         {
