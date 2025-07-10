@@ -122,7 +122,7 @@ namespace Hranitelen_magazin11
             
 
             Product newProduct = new Product(name, category, quantity, productId, price);
-            data.Products.Add(newProduct);
+            data.Products.Add(newProduct); //Dobavqme noviq produkt v spisuka s produkti
 
             Console.WriteLine($"Product '{name}' added successfully.");
             
